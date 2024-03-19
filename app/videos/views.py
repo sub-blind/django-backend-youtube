@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from .models import Video
 from .serializers import VideoSerializer
-from rest_framwork.response import Response
+from rest_framework.response import Response
 from rest_framework import status
 
 # Create your views here.
@@ -16,10 +16,13 @@ from rest_framework import status
 
 
 class VideoList(APIView):
-    def get():
-        videos = Video.objects.all()  # QuerrySet[Video, Video  --------------------]
-        # 직렬화 (Object -> Json) - serializer
-        serializer = VideoSerializer(videos, mant=True)
+    def get(self, request):
+        videos = Video.objects.all()  # QuerySet[Video, Video, Video, Video]
+        # 직렬화 (Object -> Json) - Serializer
+
+        serializer = VideoSerializer(
+            videos, many=True
+        )  # 퀘리셋 안 데이터가 2개 이상일 때
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
