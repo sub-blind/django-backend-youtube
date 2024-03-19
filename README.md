@@ -37,5 +37,8 @@
 - JSON 및 XML 지원: PostgreSQL은 JSON 및 XML과 같은 반정형 데이터 형식을 지원합니다. 이는 더 유연한 데이터 모델링을 가능하게 합니다.
 
 - django에서 추천하는 DB
-- 
-![Untitled](https://github.com/sub-blind/django-backend-youtube/assets/58137602/a3145f4a-f006-4d75-aa34-9eeee5dabad8)
+- ![Untitled](https://github.com/sub-blind/django-backend-youtube/assets/58137602/a3145f4a-f006-4d75-aa34-9eeee5dabad8)
+
+### DRF 셋팅
+
+- Setup DRF(Django Restframework) & DRF-Spectacular
