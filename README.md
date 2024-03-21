@@ -42,3 +42,7 @@
 ### DRF 셋팅
 
 - Setup DRF(Django Restframework) & DRF-Spectacular
+
+
+-> docker-compose run --rm app sh -c 'python manage.py makemigrations'
+-> docker-compose run --rm app sh -c 'python manage.py migrate'

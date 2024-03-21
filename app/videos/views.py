@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .models import Video
-from .serializers import VideoSerializer
+from .serializers import VideoListSerializer, VideoDetailSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -20,7 +20,7 @@ class VideoList(APIView):
         videos = Video.objects.all()  # QuerySet[Video, Video, Video, Video]
         # 직렬화 (Object -> Json) - Serializer
 
-        serializer = VideoSerializer(
+        serializer = VideoListSerializer(
             videos, many=True
         )  # 퀘리셋 안 데이터가 2개 이상일 때
 
@@ -28,7 +28,7 @@ class VideoList(APIView):
 
     def post(self, request):
         user_data = request.data  # Json -> Object(역직렬화)
-        serializer = VideoSerializer(data=user_data)
+        serializer = VideoListSerializer(data=user_data)
 
         if serializer.is_valid():
             serializer.save(user=request.user)
@@ -53,14 +53,14 @@ class VideoDetail(APIView):
         except Video.DoesNotExist:
             raise NotFound
 
-        serializer = VideoSerializer(video)
+        serializer = VideoDetailSerializer(video)
         return Response(serializer.data)
 
     def put(self, request, pk):
         video = Video.objects.get(pk=pk)
         user_data = request.data
 
-        serializer = VideoSerializer(video, user_data)
+        serializer = VideoDetailSerializer(video, user_data)
 
         serializer.is_valid(raise_exception=True)
         serializer.save()
