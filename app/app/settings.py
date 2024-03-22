@@ -46,10 +46,22 @@ CUSTOM_USER_APPS = [
     "rest_framework",
     "drf_spectacular",
     "comments.apps.CommentsConfig",
+    "reactions.apps.ReactionsConfig",
     "subscriptions.apps.SubscriptionsConfig",
+    "channels",
+    "chat.apps.ChatConfig",
 ]
 
 INSTALLED_APPS = CUSTOM_USER_APPS + DJANGO_SYSTEM_APPS
+
+ASGI_APPLICATION = "app.routing.application"  # 비동기 Socket => FAST_API
+WSGI_APPLICATION = "app.wsgi.application"  # 동기, REST_API
+
+
+# Channels 설정
+CHANNEL_LAYERS = {
+    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"},
+}
 
 
 AUTH_USER_MODEL = "users.User"
@@ -86,8 +98,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = "app.wsgi.application"
 
 
 # Database
@@ -145,3 +155,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Channels를 사용하기 위한 설정

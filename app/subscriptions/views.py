@@ -9,6 +9,11 @@ from rest_framework.exceptions import NotFound
 
 
 class SubscriptionList(APIView):
+    def get(self, request):
+        subs = Subscription.objects.filter(subscriber=request.user)
+        serializer = SubSerializer(subs, many=True)
+        return Response(serializer.data)
+
     def post(self, request):
         user_data = request.data  # json -> object (Serializer)
         serializer = SubSerializer(data=user_data)
