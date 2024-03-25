@@ -3,7 +3,7 @@
 # - ChatMessage: 메세지를 주고 받는 모델
 from django.db import models
 from users.models import User
-from common.models import CommonModel
+from commons.models import CommonModel
 
 
 class ChatRoom(CommonModel):

@@ -21,6 +21,10 @@ from rest_framework import status
 from rest_framework.views import APIView
 
 
+def show_html(request):
+    return render(request, "index.html")
+
+
 class ChatRoomList(APIView):
     def get(self, request):
         chatrooms = ChatRoom.objects.all()  # objs -> json (직렬화)
@@ -58,19 +62,12 @@ class ChatMessageList(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, room_id):
-        chatroom = get_object_or_404(ChatRoom, id=room_id)
-        serializer = ChatMessageSerializer(data=request.data)  # json -> objects
-
-        if serializer.is_valid():
-            # serializer.save(chatroom)
-            serializer.save(room=chatroom, sender=request.user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
         user_data = request.data
-        chatroom = get_object_or_404(ChatRoom, id = room_id)
+        chatroom = get_object_or_404(ChatRoom, id=room_id)
 
-        serializer = ChatMessageSerializer(data = user_data)
-        serializer.is_valid =(raise_exception=True)
-        serializer.save(room=room, sender=request.user)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer = ChatMessageSerializer(data=user_data)
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save(room=chatroom, sender=request.user)
+
+        return Response(serializer.data, 201)
