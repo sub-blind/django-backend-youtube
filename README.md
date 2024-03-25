@@ -43,6 +43,21 @@
 
 - Setup DRF(Django Restframework) & DRF-Spectacular
 
-
 -> docker-compose run --rm app sh -c 'python manage.py makemigrations'
 -> docker-compose run --rm app sh -c 'python manage.py migrate'
+
+### http와 웹소켓
+
+- HTTP - HTTP://
+- SOCKET = WS://, Hand Shake 양방향 통신이 가능. Low OverHead, Frame (웹 소켓에서 데이터를 나누는 단위)
+- Streaming - 영상 파일은 TCP/UDP, 3 ways hand shake
+
+### 실시간 채팅
+
+0. Channels 라이브러리 설치 - 장고와 연결
+1. app 폴더에서 ASGI 연결 설정
+2. 채팅 관련
+
+## CHAT 모델 정의
+
+-

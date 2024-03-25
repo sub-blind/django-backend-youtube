@@ -54,7 +54,7 @@ CUSTOM_USER_APPS = [
 
 INSTALLED_APPS = CUSTOM_USER_APPS + DJANGO_SYSTEM_APPS
 
-ASGI_APPLICATION = "app.routing.application"  # 비동기 Socket => FAST_API
+ASGI_APPLICATION = "app.route.application"  # 비동기 Socket => FAST_API
 WSGI_APPLICATION = "app.wsgi.application"  # 동기, REST_API
 
 
