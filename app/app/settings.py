@@ -151,8 +151,8 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Channels를 사용하기 위한 설정
-STATIC_URL = "/static/static"
-MEDIA_URL = "/static/media"
+STATIC_URL = "/static/static/"
+MEDIA_URL = "/static/media/"
 
-MEDIA_ROOT = "/vol/web/media"
-STATIC_ROOT = "/vol/web/static"
+MEDIA_ROOT = "/vol/web/media/"
+STATIC_ROOT = "/vol/web/static/"
